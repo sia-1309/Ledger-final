@@ -1,0 +1,12 @@
+[functions]
+# Functions that use auth modes other than "user" must disable JWT verification.
+# The platform-level JWT check would otherwise reject requests without a user JWT.
+
+# [functions.catalog]
+# verify_jwt = false
+
+# [functions.admin]
+# verify_jwt = false
+
+# [functions.health]
+# verify_jwt = false

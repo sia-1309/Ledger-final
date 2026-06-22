@@ -1,0 +1,34 @@
+{
+  "name": "accounts-ledger",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.117.0",
+    "@react-three/fiber": "^8.17.0",
+    "@supabase/supabase-js": "^2.108.2",
+    "framer-motion": "^11.0.0",
+    "pg": "^8.22.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.0.0",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.170.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.4.0",
+    "vite": "^6.0.0"
+  }
+}

@@ -1,0 +1,60 @@
+import { test, expect } from '@playwright/test'
+import { loginUser, fillInput } from './helpers'
+
+test.describe('Transactions', () => {
+  test('Transaction total auto-calculates from qty * price', async ({ page }) => {
+    await loginUser(page)
+    await page.goto('http://localhost:5173/suppliers')
+    await page.getByRole('button', { name: 'Add Supplier' }).click()
+    await fillInput(page, 'input[name="name"]', 'Calc Test')
+    await page.getByRole('button', { name: 'Save' }).click()
+    await page.waitForTimeout(500)
+    await page.locator('text=Calc Test').click()
+    await page.getByRole('button', { name: 'Transaction' }).click()
+    await fillInput(page, 'input[name="qty"]', '10')
+    await fillInput(page, 'input[name="price"]', '500')
+    await page.waitForTimeout(500)
+    const totalVal = await page.inputValue('input[name="total"]')
+    expect(totalVal).toBe('5000')
+  })
+
+  test('Cannot record transaction without supplier', async ({ page }) => {
+    await loginUser(page)
+    await page.goto('http://localhost:5173/suppliers')
+    const txnBtns = page.getByRole('button', { name: 'Transaction' })
+    expect(await txnBtns.count()).toBe(0)
+  })
+
+  test('Record payment updates transaction status', async ({ page }) => {
+    await loginUser(page)
+    await page.goto('http://localhost:5173/suppliers')
+    await page.getByRole('button', { name: 'Add Supplier' }).click()
+    await fillInput(page, 'input[name="name"]', 'Pay Test')
+    await page.getByRole('button', { name: 'Save' }).click()
+    await page.waitForTimeout(500)
+    await page.locator('text=Pay Test').click()
+    await page.getByRole('button', { name: 'Transaction' }).click()
+    await fillInput(page, 'input[name="total"]', '3000')
+    await page.getByRole('button', { name: 'Save Transaction' }).click()
+    await page.waitForTimeout(500)
+    await page.getByRole('button', { name: 'Payment' }).click()
+    await fillInput(page, 'input[name="amount"]', '3000')
+    await page.getByRole('button', { name: 'Record Payment' }).click()
+    await page.waitForTimeout(500)
+  })
+
+  test('Sale invoice creation', async ({ page }) => {
+    await loginUser(page)
+    await page.goto('http://localhost:5173/customers')
+    await page.getByRole('button', { name: 'Add Customer' }).click()
+    await fillInput(page, 'input[name="name"]', 'Inv Cust')
+    await page.getByRole('button', { name: 'Save' }).click()
+    await page.waitForTimeout(500)
+    await page.locator('text=Inv Cust').click()
+    await page.getByRole('button', { name: 'Sale' }).click()
+    await fillInput(page, 'input[name="invoice_no"]', 'SALE-001')
+    await fillInput(page, 'input[name="total"]', '7500')
+    await page.getByRole('button', { name: 'Save Sale' }).click()
+    await page.waitForTimeout(500)
+  })
+})
