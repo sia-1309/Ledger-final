@@ -74,8 +74,8 @@ test.describe('Customers', () => {
     await page.waitForTimeout(500)
     await page.locator('text=Detail Cust').click()
     await expect(page.locator('text=Detail Cust')).toBeVisible()
-    await expect(page.locator('text=Invoices')).toBeVisible()
-    await expect(page.locator('text=Receipts')).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Invoices/i })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Payments/i })).toBeVisible()
   })
 
   test('Record sale for customer', async ({ page }) => {

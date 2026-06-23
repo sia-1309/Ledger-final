@@ -77,7 +77,7 @@ test.describe('Suppliers', () => {
     await page.locator('text=Detail Test').click()
     await expect(page.locator('text=Detail Test')).toBeVisible()
     await expect(page.getByText(/10[,.]000/).first()).toBeVisible()
-    await expect(page.locator('text=Transactions')).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Transactions/i })).toBeVisible()
   })
 
   test('Record transaction for supplier', async ({ page }) => {

@@ -79,42 +79,42 @@ export default function Settings() {
 
   return (
     <div className="max-w-2xl space-y-8">
-      <h1 className="text-xl font-bold">Settings</h1>
+      <h1 className="text-xl font-bold text-[#7E102C]">Settings</h1>
 
-      <div className="bg-white dark:bg-gray-900 rounded-lg border p-6 space-y-4">
-        <h2 className="font-semibold">Shop Configuration</h2>
+      <div className="bg-white rounded-lg border border-[#E1D3CC] p-6 space-y-4" style={{ boxShadow: '0 1px 3px rgba(88,66,63,0.06)' }}>
+        <h2 className="font-semibold text-[#7E102C]">Shop Configuration</h2>
         <div className="grid grid-cols-2 gap-4">
-          <div className="col-span-2"><label className="block text-sm font-medium mb-1">Shop Name</label><input name="shop_name" value={config.shop_name} onChange={e => setConfig({...config, shop_name: e.target.value})} placeholder="Shop name" className="w-full h-10 px-3 border border-gray-300 rounded-md" /></div>
-          <div className="col-span-2"><label className="block text-sm font-medium mb-1">Address</label><textarea value={config.address} onChange={e => setConfig({...config, address: e.target.value})} rows={2} className="w-full px-3 py-2 border border-gray-300 rounded-md" /></div>
-          <div><label className="block text-sm font-medium mb-1">Currency</label><select name="currency" value={config.currency} onChange={e => setConfig({...config, currency: e.target.value})} className="w-full h-10 px-3 border border-gray-300 rounded-md"><option>₹</option><option>$</option><option>€</option><option>£</option></select></div>
-          <div><label className="block text-sm font-medium mb-1">Date Format</label><select name="date_format" value={config.date_format} onChange={e => setConfig({...config, date_format: e.target.value})} className="w-full h-10 px-3 border border-gray-300 rounded-md"><option>DD MMM YYYY</option><option>DD-MM-YYYY</option><option>MM/DD/YYYY</option></select></div>
-          <div><label className="block text-sm font-medium mb-1">Theme</label><select name="theme" value={config.theme} onChange={e => setConfig({...config, theme: e.target.value})} className="w-full h-10 px-3 border border-gray-300 rounded-md"><option value="light">Light</option><option value="dark">Dark</option></select></div>
+          <div className="col-span-2"><label className="block text-sm font-medium mb-1 text-[#58423F]">Shop Name</label><input name="shop_name" value={config.shop_name} onChange={e => setConfig({...config, shop_name: e.target.value})} placeholder="Shop name" className="w-full h-10 px-3 border border-[#E1D3CC] rounded-md bg-white text-[#58423F] placeholder-[#a69491]" /></div>
+          <div className="col-span-2"><label className="block text-sm font-medium mb-1 text-[#58423F]">Address</label><textarea value={config.address} onChange={e => setConfig({...config, address: e.target.value})} rows={2} className="w-full px-3 py-2 border border-[#E1D3CC] rounded-md bg-white text-[#58423F]" /></div>
+          <div><label className="block text-sm font-medium mb-1 text-[#58423F]">Currency</label><select name="currency" value={config.currency} onChange={e => setConfig({...config, currency: e.target.value})} className="w-full h-10 px-3 border border-[#E1D3CC] rounded-md bg-white text-[#58423F]"><option>₹</option><option>$</option><option>€</option><option>£</option></select></div>
+          <div><label className="block text-sm font-medium mb-1 text-[#58423F]">Date Format</label><select name="date_format" value={config.date_format} onChange={e => setConfig({...config, date_format: e.target.value})} className="w-full h-10 px-3 border border-[#E1D3CC] rounded-md bg-white text-[#58423F]"><option>DD MMM YYYY</option><option>DD-MM-YYYY</option><option>MM/DD/YYYY</option></select></div>
+          <div><label className="block text-sm font-medium mb-1 text-[#58423F]">Theme</label><select name="theme" value={config.theme} onChange={e => setConfig({...config, theme: e.target.value})} className="w-full h-10 px-3 border border-[#E1D3CC] rounded-md bg-white text-[#58423F]"><option value="light">Light</option><option value="dark">Dark</option></select></div>
         </div>
         <div className="flex items-center gap-3">
-          <button onClick={handleSave} disabled={loading} className="px-4 h-10 bg-primary text-white rounded-md text-sm font-medium disabled:opacity-50">{loading ? 'Saving...' : 'Save Settings'}</button>
-          {saved && <span className="text-success text-sm">Saved!</span>}
+          <button onClick={handleSave} disabled={loading} className="px-4 h-10 bg-[#7E102C] text-white rounded-md text-sm font-medium hover:bg-[#6a0e25] disabled:opacity-50">{loading ? 'Saving...' : 'Save Settings'}</button>
+          {saved && <span className="text-[#2d6a4f] text-sm">Saved!</span>}
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-900 rounded-lg border p-6 space-y-4">
-        <h2 className="font-semibold">Backup & Restore</h2>
+      <div className="bg-white rounded-lg border border-[#E1D3CC] p-6 space-y-4" style={{ boxShadow: '0 1px 3px rgba(88,66,63,0.06)' }}>
+        <h2 className="font-semibold text-[#7E102C]">Backup & Restore</h2>
         <div className="flex gap-3">
-          <button onClick={handleBackup} className="px-4 h-10 border border-gray-300 rounded-md text-sm">Download Backup (JSON)</button>
-          <label className="px-4 h-10 border border-gray-300 rounded-md text-sm flex items-center cursor-pointer hover:bg-gray-50">
+          <button onClick={handleBackup} className="px-4 h-10 border border-[#E1D3CC] rounded-md text-sm text-[#58423F] hover:bg-[#E1D3CC]">Download Backup (JSON)</button>
+          <label className="px-4 h-10 border border-[#E1D3CC] rounded-md text-sm flex items-center cursor-pointer hover:bg-[#E1D3CC] text-[#58423F]">
             Upload Backup
             <input type="file" accept=".json" onChange={handleRestore} className="hidden" />
           </label>
         </div>
-        {restoreStatus && <p className="text-sm text-primary">{restoreStatus}</p>}
+        {restoreStatus && <p className="text-sm text-[#7E102C]">{restoreStatus}</p>}
       </div>
 
-      <div className="bg-white dark:bg-gray-900 rounded-lg border border-error/30 p-6 space-y-4">
-        <h2 className="font-semibold text-error">Danger Zone</h2>
-        <p className="text-sm text-gray-500">Reset all your data. This cannot be undone.</p>
-        <button onClick={handleReset} className="px-4 h-10 bg-error text-white rounded-md text-sm font-medium">Reset All Data</button>
+      <div className="bg-white rounded-lg border border-[#9b2226]/30 p-6 space-y-4" style={{ boxShadow: '0 1px 3px rgba(88,66,63,0.06)' }}>
+        <h2 className="font-semibold text-[#9b2226]">Danger Zone</h2>
+        <p className="text-sm text-[#8a7370]">Reset all your data. This cannot be undone.</p>
+        <button onClick={handleReset} className="px-4 h-10 bg-[#9b2226] text-white rounded-md text-sm font-medium hover:bg-[#811c20]">Reset All Data</button>
       </div>
 
-      <div className="text-xs text-gray-400">
+      <div className="text-xs text-[#a69491]">
         <p>Accounts Ledger v1.0.0</p>
         <p>Built with React 19 + Supabase + Tailwind CSS</p>
       </div>

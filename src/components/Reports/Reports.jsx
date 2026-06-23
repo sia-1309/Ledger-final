@@ -58,9 +58,9 @@ export default function Reports() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold">Reports</h1>
+        <h1 className="text-xl font-bold text-[#7E102C]">Reports</h1>
         <div className="flex gap-2">
-          <select value={dateRange} onChange={e => setDateRange(e.target.value)} className="h-10 px-3 border border-gray-300 rounded-md text-sm">
+          <select value={dateRange} onChange={e => setDateRange(e.target.value)} className="h-10 px-3 border border-[#E1D3CC] rounded-md text-sm bg-white text-[#58423F]">
             <option value="all">All Time</option>
             <option value="week">Last Week</option>
             <option value="month">Last Month</option>
@@ -70,9 +70,9 @@ export default function Reports() {
         </div>
       </div>
 
-      <div className="flex gap-2 border-b border-gray-200">
+      <div className="flex gap-2 border-b border-[#E1D3CC]">
         {TABS.map((t, i) => (
-          <button key={t} onClick={() => setTab(i)} className={`px-4 py-2 text-sm font-medium border-b-2 transition ${i === tab ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>{t}</button>
+          <button key={t} onClick={() => setTab(i)} className={`px-4 py-2 text-sm font-medium border-b-2 transition ${i === tab ? 'border-[#7E102C] text-[#7E102C]' : 'border-transparent text-[#8a7370] hover:text-[#58423F]'}`}>{t}</button>
         ))}
       </div>
 
@@ -98,28 +98,28 @@ function ExecutiveSummary({ data, filteredExp }) {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-gray-900 rounded-lg border p-3"><p className="text-xs text-gray-500">Outstanding</p><p className="text-xl font-bold">{formatCurrency(totalOutstanding)}</p></div>
-        <div className="bg-white dark:bg-gray-900 rounded-lg border p-3"><p className="text-xs text-gray-500">Receivable</p><p className="text-xl font-bold">{formatCurrency(totalReceivable)}</p></div>
-        <div className="bg-white dark:bg-gray-900 rounded-lg border p-3"><p className="text-xs text-gray-500">Expenses (filtered)</p><p className="text-xl font-bold">{formatCurrency(monthlyExpTotal)}</p></div>
-        <div className="bg-white dark:bg-gray-900 rounded-lg border p-3"><p className="text-xs text-gray-500">Low Stock</p><p className="text-xl font-bold">{getLowStockItems(inventory).length}</p></div>
+        <div className="bg-white rounded-lg border border-[#E1D3CC] p-3" style={{ boxShadow: '0 1px 3px rgba(88,66,63,0.06)' }}><p className="text-xs text-[#8a7370]">Outstanding</p><p className="text-xl font-bold text-[#58423F]">{formatCurrency(totalOutstanding)}</p></div>
+        <div className="bg-white rounded-lg border border-[#E1D3CC] p-3" style={{ boxShadow: '0 1px 3px rgba(88,66,63,0.06)' }}><p className="text-xs text-[#8a7370]">Receivable</p><p className="text-xl font-bold text-[#58423F]">{formatCurrency(totalReceivable)}</p></div>
+        <div className="bg-white rounded-lg border border-[#E1D3CC] p-3" style={{ boxShadow: '0 1px 3px rgba(88,66,63,0.06)' }}><p className="text-xs text-[#8a7370]">Expenses (filtered)</p><p className="text-xl font-bold text-[#58423F]">{formatCurrency(monthlyExpTotal)}</p></div>
+        <div className="bg-white rounded-lg border border-[#E1D3CC] p-3" style={{ boxShadow: '0 1px 3px rgba(88,66,63,0.06)' }}><p className="text-xs text-[#8a7370]">Low Stock</p><p className="text-xl font-bold text-[#9b2226]">{getLowStockItems(inventory).length}</p></div>
       </div>
       <div className="grid grid-cols-2 gap-6">
         <div>
-          <h3 className="font-semibold mb-2">Monthly Expense Trend</h3>
+          <h3 className="font-semibold mb-2 text-[#58423F]">Monthly Expense Trend</h3>
           <div className="space-y-1 max-h-60 overflow-y-auto">
-            {trend.map(t => <div key={t.month} className="flex justify-between text-sm py-1 border-b"><span>{t.month}</span><span>{formatCurrency(t.total)}</span></div>)}
+            {trend.map(t => <div key={t.month} className="flex justify-between text-sm py-1 border-b border-[#E1D3CC] text-[#58423F]"><span>{t.month}</span><span>{formatCurrency(t.total)}</span></div>)}
           </div>
         </div>
         <div>
-          <h3 className="font-semibold mb-2">Category Breakdown</h3>
+          <h3 className="font-semibold mb-2 text-[#58423F]">Category Breakdown</h3>
           <div className="space-y-2">
-            {byCategory.map(c => <div key={c.category} className="flex justify-between text-sm"><span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full" style={{backgroundColor: EXPENSE_CATEGORY_COLORS[c.category]}} />{c.category}</span><span>{formatCurrency(c.total)}</span></div>)}
+            {byCategory.map(c => <div key={c.category} className="flex justify-between text-sm text-[#58423F]"><span className="flex items-center gap-2"><span className="w-2 h-2 rounded-full" style={{backgroundColor: EXPENSE_CATEGORY_COLORS[c.category]}} />{c.category}</span><span>{formatCurrency(c.total)}</span></div>)}
           </div>
         </div>
       </div>
-      <div className="bg-white dark:bg-gray-900 rounded-lg border p-4 text-sm">
-        <p><strong>Top Supplier:</strong> {topSupplier?.name || 'N/A'} ({formatCurrency(topSupplier?.opening_balance || 0)})</p>
-        <p><strong>Highest Expense Category:</strong> {highestExp?.category || 'N/A'} ({formatCurrency(highestExp?.total || 0)})</p>
+      <div className="bg-white rounded-lg border border-[#E1D3CC] p-4 text-sm" style={{ boxShadow: '0 1px 3px rgba(88,66,63,0.06)' }}>
+        <p className="text-[#58423F]"><strong>Top Supplier:</strong> {topSupplier?.name || 'N/A'} ({formatCurrency(topSupplier?.opening_balance || 0)})</p>
+        <p className="text-[#58423F]"><strong>Highest Expense Category:</strong> {highestExp?.category || 'N/A'} ({formatCurrency(highestExp?.total || 0)})</p>
       </div>
     </div>
   )
@@ -134,10 +134,10 @@ function SupplierReport({ suppliers, transactions, payments }) {
   })
   return (
     <div>
-      <div className="flex justify-between mb-2"><h3 className="font-semibold">Supplier Report</h3><button onClick={() => exportToCSV(rows, 'supplier-report')} className="text-sm text-primary hover:underline">Export CSV</button></div>
+      <div className="flex justify-between mb-2"><h3 className="font-semibold text-[#58423F]">Supplier Report</h3><button onClick={() => exportToCSV(rows, 'supplier-report')} className="text-sm text-[#7E102C] hover:underline">Export CSV</button></div>
       <table className="w-full text-sm">
-        <thead><tr className="border-b"><th className="text-left py-2">Supplier</th><th className="text-right py-2">Purchased</th><th className="text-right py-2">Paid</th><th className="text-right py-2">Balance</th><th className="text-left py-2">Status</th></tr></thead>
-        <tbody>{rows.map(r => <tr key={r.name} className="border-b border-gray-100"><td className="py-2">{r.name}</td><td className="py-2 text-right">{formatCurrency(r.purchased)}</td><td className="py-2 text-right">{formatCurrency(r.paid)}</td><td className="py-2 text-right font-medium">{formatCurrency(r.balance)}</td><td className="py-2">{r.status}</td></tr>)}</tbody>
+        <thead><tr className="border-b border-[#E1D3CC]"><th className="text-left py-2 text-[#8a7370]">Supplier</th><th className="text-right py-2 text-[#8a7370]">Purchased</th><th className="text-right py-2 text-[#8a7370]">Paid</th><th className="text-right py-2 text-[#8a7370]">Balance</th><th className="text-left py-2 text-[#8a7370]">Status</th></tr></thead>
+        <tbody>{rows.map(r => <tr key={r.name} className="border-b border-[#E1D3CC]"><td className="py-2 text-[#58423F]">{r.name}</td><td className="py-2 text-right text-[#58423F]">{formatCurrency(r.purchased)}</td><td className="py-2 text-right text-[#58423F]">{formatCurrency(r.paid)}</td><td className="py-2 text-right font-medium text-[#58423F]">{formatCurrency(r.balance)}</td><td className="py-2 text-[#58423F]">{r.status}</td></tr>)}</tbody>
       </table>
     </div>
   )
@@ -152,10 +152,10 @@ function CustomerReport({ customers, invoices, receipts }) {
   })
   return (
     <div>
-      <div className="flex justify-between mb-2"><h3 className="font-semibold">Customer Report</h3><button onClick={() => exportToCSV(rows, 'customer-report')} className="text-sm text-primary hover:underline">Export CSV</button></div>
+      <div className="flex justify-between mb-2"><h3 className="font-semibold text-[#58423F]">Customer Report</h3><button onClick={() => exportToCSV(rows, 'customer-report')} className="text-sm text-[#7E102C] hover:underline">Export CSV</button></div>
       <table className="w-full text-sm">
-        <thead><tr className="border-b"><th className="text-left py-2">Customer</th><th className="text-right py-2">Sold</th><th className="text-right py-2">Received</th><th className="text-right py-2">Balance</th><th className="text-left py-2">Status</th></tr></thead>
-        <tbody>{rows.map(r => <tr key={r.name} className="border-b border-gray-100"><td className="py-2">{r.name}</td><td className="py-2 text-right">{formatCurrency(r.sold)}</td><td className="py-2 text-right">{formatCurrency(r.received)}</td><td className="py-2 text-right font-medium">{formatCurrency(r.balance)}</td><td className="py-2">{r.status}</td></tr>)}</tbody>
+        <thead><tr className="border-b border-[#E1D3CC]"><th className="text-left py-2 text-[#8a7370]">Customer</th><th className="text-right py-2 text-[#8a7370]">Sold</th><th className="text-right py-2 text-[#8a7370]">Received</th><th className="text-right py-2 text-[#8a7370]">Balance</th><th className="text-left py-2 text-[#8a7370]">Status</th></tr></thead>
+        <tbody>{rows.map(r => <tr key={r.name} className="border-b border-[#E1D3CC]"><td className="py-2 text-[#58423F]">{r.name}</td><td className="py-2 text-right text-[#58423F]">{formatCurrency(r.sold)}</td><td className="py-2 text-right text-[#58423F]">{formatCurrency(r.received)}</td><td className="py-2 text-right font-medium text-[#58423F]">{formatCurrency(r.balance)}</td><td className="py-2 text-[#58423F]">{r.status}</td></tr>)}</tbody>
       </table>
     </div>
   )
@@ -167,19 +167,19 @@ function ExpenseReport({ expenses }) {
   const monthly = getMonthlyExpenseTrend(expenses, 12)
   return (
     <div className="space-y-6">
-      <div className="flex justify-between"><h3 className="font-semibold">Expense Report</h3><button onClick={() => exportToCSV(byCategory, 'expense-report')} className="text-sm text-primary hover:underline">Export CSV</button></div>
+      <div className="flex justify-between"><h3 className="font-semibold text-[#58423F]">Expense Report</h3><button onClick={() => exportToCSV(byCategory, 'expense-report')} className="text-sm text-[#7E102C] hover:underline">Export CSV</button></div>
       <div className="grid grid-cols-2 gap-6">
         <div>
-          <h4 className="text-sm font-medium mb-2">Category Breakdown</h4>
+          <h4 className="text-sm font-medium mb-2 text-[#58423F]">Category Breakdown</h4>
           <table className="w-full text-sm">
-            <thead><tr className="border-b"><th className="text-left py-1">Category</th><th className="text-right py-1">Count</th><th className="text-right py-1">Total</th><th className="text-right py-1">%</th></tr></thead>
-            <tbody>{byCategory.map(c => <tr key={c.category} className="border-b border-gray-100"><td className="py-1">{c.category}</td><td className="py-1 text-right">{c.count}</td><td className="py-1 text-right">{formatCurrency(c.total)}</td><td className="py-1 text-right">{total ? ((c.total / total) * 100).toFixed(1) : 0}%</td></tr>)}</tbody>
+            <thead><tr className="border-b border-[#E1D3CC]"><th className="text-left py-1 text-[#8a7370]">Category</th><th className="text-right py-1 text-[#8a7370]">Count</th><th className="text-right py-1 text-[#8a7370]">Total</th><th className="text-right py-1 text-[#8a7370]">%</th></tr></thead>
+            <tbody>{byCategory.map(c => <tr key={c.category} className="border-b border-[#E1D3CC]"><td className="py-1 text-[#58423F]">{c.category}</td><td className="py-1 text-right text-[#58423F]">{c.count}</td><td className="py-1 text-right text-[#58423F]">{formatCurrency(c.total)}</td><td className="py-1 text-right text-[#58423F]">{total ? ((c.total / total) * 100).toFixed(1) : 0}%</td></tr>)}</tbody>
           </table>
         </div>
         <div>
-          <h4 className="text-sm font-medium mb-2">Monthly Breakdown</h4>
+          <h4 className="text-sm font-medium mb-2 text-[#58423F]">Monthly Breakdown</h4>
           <div className="space-y-1 max-h-80 overflow-y-auto">
-            {monthly.map(m => <div key={m.month} className="flex justify-between text-sm py-1 border-b"><span>{m.month}</span><span>{formatCurrency(m.total)}</span></div>)}
+            {monthly.map(m => <div key={m.month} className="flex justify-between text-sm py-1 border-b border-[#E1D3CC] text-[#58423F]"><span>{m.month}</span><span>{formatCurrency(m.total)}</span></div>)}
           </div>
         </div>
       </div>
@@ -197,15 +197,15 @@ function InventoryReport({ inventory, suppliers, totalValue, lowStock }) {
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between"><h3 className="font-semibold">Inventory Report</h3><button onClick={() => exportToCSV(rows, 'inventory-report')} className="text-sm text-primary hover:underline">Export CSV</button></div>
+      <div className="flex justify-between"><h3 className="font-semibold text-[#58423F]">Inventory Report</h3><button onClick={() => exportToCSV(rows, 'inventory-report')} className="text-sm text-[#7E102C] hover:underline">Export CSV</button></div>
       <div className="grid grid-cols-3 gap-4">
-        <div className="bg-white dark:bg-gray-900 rounded-lg border p-3"><p className="text-xs text-gray-500">Total Value</p><p className="text-lg font-bold">{formatCurrency(totalValue)}</p></div>
-        <div className="bg-white dark:bg-gray-900 rounded-lg border p-3"><p className="text-xs text-gray-500">Low Stock Items</p><p className="text-lg font-bold text-error">{lowStock.length}</p></div>
-        <div className="bg-white dark:bg-gray-900 rounded-lg border p-3"><p className="text-xs text-gray-500">Top Supplier</p><p className="text-lg font-bold">{topSupplier?.name || 'N/A'}</p></div>
+        <div className="bg-white rounded-lg border border-[#E1D3CC] p-3" style={{ boxShadow: '0 1px 3px rgba(88,66,63,0.06)' }}><p className="text-xs text-[#8a7370]">Total Value</p><p className="text-lg font-bold text-[#58423F]">{formatCurrency(totalValue)}</p></div>
+        <div className="bg-white rounded-lg border border-[#E1D3CC] p-3" style={{ boxShadow: '0 1px 3px rgba(88,66,63,0.06)' }}><p className="text-xs text-[#8a7370]">Low Stock Items</p><p className="text-lg font-bold text-[#9b2226]">{lowStock.length}</p></div>
+        <div className="bg-white rounded-lg border border-[#E1D3CC] p-3" style={{ boxShadow: '0 1px 3px rgba(88,66,63,0.06)' }}><p className="text-xs text-[#8a7370]">Top Supplier</p><p className="text-lg font-bold text-[#58423F]">{topSupplier?.name || 'N/A'}</p></div>
       </div>
       <table className="w-full text-sm">
-        <thead><tr className="border-b"><th className="text-left py-2">SKU</th><th className="text-left py-2">Name</th><th className="text-right py-2">Qty</th><th className="text-right py-2">Price</th><th className="text-right py-2">Value</th><th className="text-left py-2">Supplier</th></tr></thead>
-        <tbody>{inventory.map(i => <tr key={i.id} className="border-b border-gray-100"><td className="py-2 font-mono text-xs">{i.sku}</td><td className="py-2">{i.name}</td><td className="py-2 text-right">{i.qty}</td><td className="py-2 text-right">{formatCurrency(i.unit_price)}</td><td className="py-2 text-right font-medium">{formatCurrency(Number(i.qty || 0) * Number(i.unit_price || 0))}</td><td className="py-2 text-xs text-gray-500">{suppliers.find(s => s.id === i.supplier_id)?.name || '-'}</td></tr>)}</tbody>
+        <thead><tr className="border-b border-[#E1D3CC]"><th className="text-left py-2 text-[#8a7370]">SKU</th><th className="text-left py-2 text-[#8a7370]">Name</th><th className="text-right py-2 text-[#8a7370]">Qty</th><th className="text-right py-2 text-[#8a7370]">Price</th><th className="text-right py-2 text-[#8a7370]">Value</th><th className="text-left py-2 text-[#8a7370]">Supplier</th></tr></thead>
+        <tbody>{inventory.map(i => <tr key={i.id} className="border-b border-[#E1D3CC]"><td className="py-2 font-mono text-xs text-[#58423F]">{i.sku}</td><td className="py-2 text-[#58423F]">{i.name}</td><td className="py-2 text-right text-[#58423F]">{i.qty}</td><td className="py-2 text-right text-[#58423F]">{formatCurrency(i.unit_price)}</td><td className="py-2 text-right font-medium text-[#58423F]">{formatCurrency(Number(i.qty || 0) * Number(i.unit_price || 0))}</td><td className="py-2 text-xs text-[#8a7370]">{suppliers.find(s => s.id === i.supplier_id)?.name || '-'}</td></tr>)}</tbody>
       </table>
     </div>
   )
